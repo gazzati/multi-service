@@ -90,16 +90,15 @@
     rfdc "^1.3.0"
     yaml "^2.1.1"
 
-"@gazzati/eslint-config-node@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@gazzati/eslint-config-node/-/eslint-config-node-1.0.6.tgz#65b6f822d81437978704ecb22362c0670b97d749"
-  integrity sha512-A5HucmAGTTKzMpd9TvDf5vpYE9eYv68zCW/d9A54ik4mpSxOFgqMB0g//r/R6CxlZb46Ia0SX/7u4eWT/IT4rA==
+"@gazzati/eslint-config-node@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@gazzati/eslint-config-node/-/eslint-config-node-1.0.7.tgz#28fbd0a3ab7d36ee009b081dd5c50c830089a188"
+  integrity sha512-D4JTN0SAKl31M9Ejab8OGxPWUuMcVObxLg0gDE9ajPhPffQT2xabJl9hNHXn3X8pDgcPG93OB9fvY6CKjJNeCQ==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.40.1"
     "@typescript-eslint/parser" "^5.40.1"
     eslint-config-prettier "^8.5.0"
     eslint-plugin-import "^2.26.0"
-    eslint-plugin-jest "^27.1.2"
     prettier "^2.7.1"
 
 "@humanwhocodes/config-array@^0.11.8":
@@ -276,7 +275,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.47.1", "@typescript-eslint/utils@^5.10.0":
+"@typescript-eslint/utils@5.47.1":
   version "5.47.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.47.1.tgz#595f25ac06e9ee28c339fd43c709402820b13d7b"
   integrity sha512-l90SdwqfmkuIVaREZ2ykEfCezepCLxzWMo5gVfcJsJCaT4jHT+QjgSkYhs5BMQmWqE9k3AtIfk4g211z/sTMVw==
@@ -838,13 +837,6 @@ eslint-plugin-import@^2.26.0:
     object.values "^1.1.5"
     resolve "^1.22.0"
     tsconfig-paths "^3.14.1"
-
-eslint-plugin-jest@^27.1.2:
-  version "27.1.7"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-27.1.7.tgz#0351e904afb8d66b7f70452929556dfdc8daba0d"
-  integrity sha512-0QVzf+og4YI1Qr3UoprkqqhezAZjFffdi62b0IurkCXMqPtRW84/UT4CKsYT80h/D82LA9avjO/80Ou1LdgbaQ==
-  dependencies:
-    "@typescript-eslint/utils" "^5.10.0"
 
 eslint-scope@^5.1.1:
   version "5.1.1"

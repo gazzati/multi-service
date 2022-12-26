@@ -1,7 +1,7 @@
 export default {
-    routePrefix: '/docs',
+  routePrefix: "/docs",
   uiConfig: {
-    docExpansion: 'full',
+    docExpansion: "full",
     deepLinking: false
   },
   staticCSP: true,
