@@ -8,7 +8,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node build/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only --quiet src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only --quiet src/index.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**/*.ts --fix"
   },
   "dependencies": {
     "@fastify/swagger": "^8.2.1",
@@ -16,11 +18,25 @@
     "@sinclair/typebox": "^0.25.16",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.4.0",
-    "pino-pretty": "^9.1.1"
+    "lint-staged": "^13.1.0",
+    "pino-pretty": "^9.1.1",
+    "simple-pre-commit": "^1.2.1"
   },
   "devDependencies": {
+    "@gazzati/eslint-config-node": "^1.0.7",
     "@types/node": "^18.11.18",
+    "eslint": "^8.30.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.4"
+  },
+  "simple-pre-commit": "npx lint-staged",
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
   }
 }
