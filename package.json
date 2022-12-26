@@ -18,6 +18,7 @@
     "@sinclair/typebox": "^0.25.16",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.4.0",
+    "lint-staged": "^13.1.0",
     "pino-pretty": "^9.1.1",
     "simple-pre-commit": "^1.2.1"
   },
