@@ -1,5 +1,5 @@
-import { FastifySchema, FastifyPluginAsync } from "fastify"
 import { Static, Type } from "@sinclair/typebox"
+import { FastifySchema, FastifyPluginCallback } from "fastify"
 import { RouteGenericInterface } from "fastify/types/route"
 
 const TestDto = Type.Object({
@@ -33,9 +33,9 @@ const TestSchema: FastifySchema = {
   }
 }
 
-const testRoute: FastifyPluginAsync = async server => {
+const testRoute: FastifyPluginCallback = server => {
   server.get<RegisterRequest>("/", { schema: TestSchema }, async (request, reply) => {
-    reply.status(201).send({ hello: "test" })
+    await reply.status(201).send({ hello: "test" })
   })
 }
 
