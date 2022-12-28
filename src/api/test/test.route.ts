@@ -1,41 +1,57 @@
-import { Static, Type } from "@sinclair/typebox"
-import { FastifySchema, FastifyPluginCallback } from "fastify"
-import { RouteGenericInterface } from "fastify/types/route"
+import { FastifyInstance } from "fastify"
 
-const TestDto = Type.Object({
-  user: Type.Object({
-    email: Type.String({ format: "email" }),
-    password: Type.String()
+import { TestItemSchema, TestListSchema, CreateTestSchema, UpdateTestSchema, DeleteTestSchema } from "./test.schema"
+import type {
+  TestItemRequest,
+  TestListRequest,
+  CreateTestRequest,
+  UpdateTestRequest,
+  DeleteTestRequest
+} from "./test.schema"
+import TestService from "./test.service"
+
+const testRoute = (server: FastifyInstance) => {
+  const testService = new TestService()
+
+  server.get<TestItemRequest>("/:id", { schema: TestItemSchema }, async (request, reply) => {
+    const testId = Number(request.params.id)
+
+    const response = await testService.get(testId)
+    if (!response) return server.httpErrors.notFound()
+
+    reply.send(response)
   })
-})
 
-type TestDtoType = Static<typeof TestDto>
+  server.get<TestListRequest>("/", { schema: TestListSchema }, async (request, reply) => {
+    const from = Number(request.query.from) || 1
+    const response = await testService.getList({ from })
 
-const TestReply = Type.Object({
-  hello: Type.String()
-})
+    reply.send(response)
+  })
 
-type TestReplyType = Static<typeof TestReply>
+  server.post<CreateTestRequest>("/", { schema: CreateTestSchema }, async (request, reply) => {
+    const response = await testService.create(request.body)
+    if (!response) return server.httpErrors.badRequest()
 
-interface RegisterRequest extends RouteGenericInterface {
-  Body: TestDtoType
-  Reply: TestReplyType
-}
+    reply.status(201).send(response)
+  })
 
-const TestSchema: FastifySchema = {
-  //body: TestDto,
-  description: "Sign up a user",
-  tags: ["Authentication"],
-  summary: "sign up",
-  response: {
-    201: TestReply,
-    400: TestReply
-  }
-}
+  server.patch<UpdateTestRequest>("/:id", { schema: UpdateTestSchema }, async (request, reply) => {
+    const testId = Number(request.params.id)
 
-const testRoute: FastifyPluginCallback = server => {
-  server.get<RegisterRequest>("/", { schema: TestSchema }, async (request, reply) => {
-    await reply.status(201).send({ hello: "test" })
+    const response = await testService.update(testId, request.body)
+    if (!response) return server.httpErrors.badRequest()
+
+    reply.send(response)
+  })
+
+  server.delete<DeleteTestRequest>("/:id", { schema: DeleteTestSchema }, async (request, reply) => {
+    const testId = Number(request.params.id)
+
+    const response = await testService.delete(testId)
+    if (!response) return server.httpErrors.badRequest()
+
+    reply.status(204)
   })
 }
 
