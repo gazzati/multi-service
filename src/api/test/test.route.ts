@@ -23,7 +23,7 @@ async function testRoute(server: FastifyInstance) {
   })
 
   server.get<TestListRequest>("/", { schema: TestListSchema }, async (request, reply) => {
-    const title = String(request.query.title) || ""
+    const title = request.query.title?.toString() || ""
     const response = await testService.getList({ title })
 
     reply.send(response)
