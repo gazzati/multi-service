@@ -5,11 +5,9 @@ import fastifySwagger from "@fastify/swagger"
 import fastifySwaggerUi from "@fastify/swagger-ui"
 import fastify from "fastify"
 
+import config from "@config/index"
 import pinoLogger from "@config/pino-logger"
 import swaggerDoc from "@config/swagger"
-
-const PORT = 8000
-const HOST = "127.0.0.1"
 
 const app = fastify({
   logger: pinoLogger
@@ -26,7 +24,7 @@ app.after(() => {
 
 const start = async () => {
   try {
-    await app.listen({ port: PORT, host: HOST })
+    await app.listen({ port: config.port })
   } catch (error) {
     console.error(error)
   }

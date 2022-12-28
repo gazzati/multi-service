@@ -1,63 +1,40 @@
+import BaseService from "@api/base.service"
+import { Like } from "typeorm"
+
 import type { TestItem, TestList, CreateTest, UpdateTest } from "./test.schema"
 
 interface ListFilters {
-  from: number
+  title: string
 }
 
-class TestService {
+class TestService extends BaseService {
   public async get(id: number): Promise<TestItem | null> {
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const test = await this.entities.Test.findOne({ where: { id } })
+    if (!test) return null
 
-    if (id > 10) return null
-
-    return {
-      id,
-      name: `Test ${id}`,
-      email: `test${id}@mail.ru`
-    }
+    return test
   }
 
   public async getList(filters: ListFilters): Promise<TestList> {
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const { title } = filters
+    const tests = await this.entities.Test.find({ where: { title: Like(`%${title}%`) } })
 
-    return new Array(10).fill(Number).map((_, index) => {
-      const id = index + filters.from
-
-      return {
-        id,
-        name: `Test ${id}`,
-        email: `test${id}@mail.ru`
-      }
-    })
+    return tests
   }
 
-  public async create(payload: CreateTest): Promise<TestItem | null> {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    const id = Math.floor(Math.random() * 100)
-    if (id > 70) return null
-
-    return { id, ...payload }
+  public async create(payload: CreateTest): Promise<boolean> {
+    const response = await this.entities.Test.insert(payload)
+    return !!response
   }
 
-  public async update(id: number, payload: UpdateTest): Promise<TestItem | null> {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    if (id > 10) return null
-
-    const res = {
-      id,
-      name: `Test ${id}`,
-      email: `test${id}@mail.ru`
-    }
-
-    return { ...res, ...payload }
+  public async update(id: number, payload: UpdateTest): Promise<boolean> {
+    const response = await this.entities.Test.update(id, payload)
+    return !!response.affected
   }
 
   public async delete(id: number): Promise<boolean> {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-
-    return id <= 10
+    const response = await this.entities.Test.delete(id)
+    return !!response.affected
   }
 }
 

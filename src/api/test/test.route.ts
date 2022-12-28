@@ -10,7 +10,7 @@ import type {
 } from "./test.schema"
 import TestService from "./test.service"
 
-const testRoute = (server: FastifyInstance) => {
+function testRoute(server: FastifyInstance) {
   const testService = new TestService()
 
   server.get<TestItemRequest>("/:id", { schema: TestItemSchema }, async (request, reply) => {
@@ -23,8 +23,8 @@ const testRoute = (server: FastifyInstance) => {
   })
 
   server.get<TestListRequest>("/", { schema: TestListSchema }, async (request, reply) => {
-    const from = Number(request.query.from) || 1
-    const response = await testService.getList({ from })
+    const title = String(request.query.title) || ""
+    const response = await testService.getList({ title })
 
     reply.send(response)
   })
@@ -33,7 +33,7 @@ const testRoute = (server: FastifyInstance) => {
     const response = await testService.create(request.body)
     if (!response) return server.httpErrors.badRequest()
 
-    reply.status(201).send(response)
+    reply.status(201)
   })
 
   server.patch<UpdateTestRequest>("/:id", { schema: UpdateTestSchema }, async (request, reply) => {
@@ -42,7 +42,7 @@ const testRoute = (server: FastifyInstance) => {
     const response = await testService.update(testId, request.body)
     if (!response) return server.httpErrors.badRequest()
 
-    reply.send(response)
+    reply.send()
   })
 
   server.delete<DeleteTestRequest>("/:id", { schema: DeleteTestSchema }, async (request, reply) => {

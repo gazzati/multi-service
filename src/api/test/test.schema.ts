@@ -4,8 +4,8 @@ import { Error } from "@interfaces/api"
 
 const STestItem = Type.Object({
   id: Type.Number(),
-  name: Type.String(),
-  email: Type.String({ format: "email" })
+  title: Type.String(),
+  description: Type.Optional(Type.String())
 })
 
 const STestList = Type.Array(STestItem)
@@ -26,14 +26,14 @@ export interface TestItemRequest {
 
 export interface TestListRequest {
   Querystring: {
-    from: string
+    title: string
   }
   Reply: Reply<TestList>
 }
 
 export interface CreateTestRequest {
   Body: CreateTest
-  Reply: Reply<TestItem>
+  Reply: Reply
 }
 
 export interface UpdateTestRequest {
@@ -41,13 +41,14 @@ export interface UpdateTestRequest {
   Params: {
     id: string
   }
-  Reply: Reply<TestItem>
+  Reply: Reply
 }
 
 export interface DeleteTestRequest {
   Params: {
     id: string
   }
+  Reply: Reply
 }
 
 export const TestItemSchema = {
@@ -67,7 +68,7 @@ export const TestListSchema = {
   description: "Get tests list",
   tags: ["Test"],
   querystring: {
-    from: Type.Optional(Type.String())
+    title: Type.Optional(Type.String())
   },
   response: {
     200: STestList
@@ -79,7 +80,7 @@ export const CreateTestSchema = {
   tags: ["Test"],
   body: SCreateTest,
   response: {
-    201: STestItem,
+    201: {},
     400: Error
   }
 }
@@ -92,7 +93,7 @@ export const UpdateTestSchema = {
   },
   body: SUpdateTest,
   response: {
-    201: STestItem,
+    201: {},
     400: Error
   }
 }

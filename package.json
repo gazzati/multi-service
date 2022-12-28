@@ -10,7 +10,8 @@
     "start": "node build/index.js",
     "dev": "ts-node-dev --respawn --transpile-only --quiet src/index.ts",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint src/**/*.ts --fix"
+    "lint": "eslint src/**/*.ts --fix",
+    "type": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
     "@fastify/sensible": "^5.2.0",
@@ -21,10 +22,13 @@
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-plugin": "^4.4.0",
+    "joi": "^17.7.0",
     "lint-staged": "^13.1.0",
     "module-alias": "^2.2.2",
+    "pg": "^8.8.0",
     "pino-pretty": "^9.1.1",
-    "simple-pre-commit": "^1.2.1"
+    "simple-pre-commit": "^1.2.1",
+    "typeorm": "^0.3.11"
   },
   "devDependencies": {
     "@gazzati/eslint-config-node": "^1.0.7",
