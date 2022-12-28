@@ -1,8 +1,16 @@
 module.exports = {
   extends: ["@gazzati/eslint-config-node"],
   rules: {
-    "@typescript-eslint/require-await": "off"
+    // Specific project rules
   },
+  overrides: [
+    {
+      files: ["*.route.ts"],
+      rules: {
+        "@typescript-eslint/require-await": 0
+      }
+    }
+  ],
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2019,
