@@ -7,6 +7,7 @@ dotenv.config()
 
 const envVarsSchema = Joi.object({
   NODE_ENV: Joi.string().valid(Env.Production, Env.Development, Env.Test).default(Env.Development),
+  HOST: Joi.string().default("127.0.0.1").description("App Host"),
   PORT: Joi.number().default(3000).description("App Port"),
 
   PSQL_HOST: Joi.string().default("localhost").description("Database Host"),
@@ -20,6 +21,7 @@ if (error) new Error(`Config validation error: ${error.message}`)
 
 export default {
   env: envVars.NODE_ENV,
+  host: envVars.HOST,
   port: envVars.PORT,
 
   psqlHost: envVars.PSQL_HOST,

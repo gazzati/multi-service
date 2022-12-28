@@ -24,7 +24,7 @@ app.after(() => {
 
 const start = async () => {
   try {
-    await app.listen({ port: config.port })
+    await app.listen({ port: config.port, host: config.host })
   } catch (error) {
     console.error(error)
   }

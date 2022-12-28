@@ -17,7 +17,11 @@ class TestService extends BaseService {
 
   public async getList(filters: ListFilters): Promise<TestList> {
     const { title } = filters
-    const tests = await this.entities.Test.find({ where: { title: Like(`%${title}%`) } })
+    const tests = await this.entities.Test.find({
+      where: {
+        ...(title && { title: Like(`%${title}%`) })
+      }
+    })
 
     return tests
   }
