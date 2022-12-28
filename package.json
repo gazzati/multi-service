@@ -1,8 +1,7 @@
 {
-  "name": "avia-tickets",
-  "version": "1.0.0",
-  "main": "index",
-  "repository": "https://github.com/gazzati/avia-tickets.git",
+  "name": "template-backend-fastify",
+  "version": "1.0.1",
+  "repository": "https://github.com/gazzati/template-backend-fastify.git",
   "author": "gazzati <gazzaevtimur@gmail.com>",
   "license": "MIT",
   "scripts": {
