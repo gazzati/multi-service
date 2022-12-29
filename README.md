@@ -1,2 +1,1 @@
-# Backend template
-## Stack: TS + Fastify + Typeorm
+# Avia tickets application
