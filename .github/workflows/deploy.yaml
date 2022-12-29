@@ -29,6 +29,9 @@ jobs:
           touch .env
           echo DATABASE_ADDRESS=${{ secrets.DATABASE_ADDRESS }} >> .env
 
+      - name: Install PM2
+        run: npm i pm2
+
       - name: Deploy
         run: pm2 deploy ecosystem.config.js production
         # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
