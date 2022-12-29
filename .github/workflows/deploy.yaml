@@ -5,34 +5,30 @@ on:
       - master
 
 jobs:
-  deploy:
+  build:
+
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
     steps:
-      - uses: actions/checkout@v2
-      #
-      # ... your other steps, such as running tests, etc...
-      #
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ./deploy.key
-          sudo chmod 600 ./deploy.key
-          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-        shell: bash
-        env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-
-      # (optional - only needed if your config uses environment variables)
-      - name: Create env file
-        run: |
-          touch .env
-          echo DATABASE_ADDRESS=${{ secrets.DATABASE_ADDRESS }} >> .env
-
-      - name: Install PM2
-        run: npm i pm2
-
-      - name: Deploy
-        run: pm2 deploy ecosystem.config.js production
-        # Or alternately, put this deploy script in your package.json's scripts and run it using yarn/npm:
-        # run: yarn deploy
+    - uses: actions/checkout@v2
+    #
+    # ... your other steps, such as running tests, etc...
+    #
+    #- name: Use Node.js ${{ matrix.node-version }}
+    #  uses: actions/setup-node@v1
+    #  with:
+    #    node-version: ${{ matrix.node-version }}
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.2
+      with:
+        key: ${{secrets.SSH_PRIVATE_KEY}}
+        host: gazzati.site
+        username: tim
+        script: |
+          cd /home/projects/avia-tickets
+          git pull
+          pm2 deploy ecosystem.config.js production
