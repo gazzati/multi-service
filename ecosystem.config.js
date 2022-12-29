@@ -17,7 +17,6 @@ module.exports = {
       }
     }
   ],
-
   deploy: {
     production: {
       user: "tim",
