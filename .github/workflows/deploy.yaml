@@ -26,8 +26,8 @@ jobs:
       uses: appleboy/ssh-action@v0.1.2
       with:
         key: ${{secrets.SSH_PRIVATE_KEY}}
-        host: gazzati.site
-        username: tim
+        host: "gazzati.site"
+        username: "tim"
         script: |
           cd /home/projects/avia-tickets
           git pull
