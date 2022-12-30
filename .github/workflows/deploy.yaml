@@ -23,12 +23,12 @@ jobs:
     #  with:
     #    node-version: ${{ matrix.node-version }}
     - name: SSH Remote Commands
-      uses: appleboy/ssh-action@v0.1.2
-      with:
-        key: ${{secrets.SSH_PRIVATE_KEY}}
-        host: "gazzati.site"
-        username: "tim"
-        script: |
-          cd /home/projects/avia-tickets
-          git pull
-          pm2 deploy ecosystem.config.js production
+      uses: hengkx/ssh-deploy@v1.0.1
+      env:
+        HOST: ${{ secrets.DEPLOY_HOST }}
+        USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+        PASSWORD: ${{ secrets.DEPLOY_PASSWORD }}
+        PORT: 22
+        SOURCE: 'build/'
+        TARGET: /home/projects/avia-tickets
+        AFTER_COMMAND: 'git pull && pm2 deploy ecosystem.config.js production'
