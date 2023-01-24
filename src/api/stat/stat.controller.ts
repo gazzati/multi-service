@@ -10,7 +10,7 @@ async function statController(server: FastifyInstance) {
 
   server.post<AddVisit>("/visit", { schema: AddVisitSchema }, async (request, reply) => {
     const { headers } = request
-    const ip = headers["Real-IP"] || ""
+    const ip = headers["real-ip"] || ""
 
     const parser = new UAParser(headers["user-agent"])
     const parserResults = parser.getResult()

@@ -8,7 +8,7 @@ type AddListResponse = Static<typeof AddVisitResponseSchema>
 
 export interface AddVisit {
   Headers: {
-    "Real-IP": string
+    "real-ip": string
   }
   Reply: Reply<AddListResponse>
 }
