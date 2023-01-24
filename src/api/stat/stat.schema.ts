@@ -7,6 +7,9 @@ const AddVisitResponseSchema = Type.Object({
 type AddListResponse = Static<typeof AddVisitResponseSchema>
 
 export interface AddVisit {
+  Headers: {
+    "Real-IP": string
+  }
   Reply: Reply<AddListResponse>
 }
 

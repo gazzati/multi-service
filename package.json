@@ -8,7 +8,7 @@
     "build": "tsc -p tsconfig.json && cp .env ./build/.env",
     "start": "node build/server.js",
     "dev": "ts-node-dev --respawn --transpile-only --quiet src/server.ts",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --write \"src/\"",
     "lint": "eslint src/**/*.ts --fix",
     "type": "tsc --project tsconfig.json --noEmit"
   },
