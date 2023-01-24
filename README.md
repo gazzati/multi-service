@@ -1,1 +1,1 @@
-# Avia tickets application
+# Multi tasks service

@@ -1,5 +1,5 @@
 import "./aliases"
-import testRoute from "@api/test/test.route"
+import router from "@api/router"
 import fastifySensible from "@fastify/sensible"
 import fastifySwagger from "@fastify/swagger"
 import fastifySwaggerUi from "@fastify/swagger-ui"
@@ -19,7 +19,7 @@ app.after(() => {
   app.register(fastifySwaggerUi, swaggerDoc)
   app.register(fastifySensible)
 
-  app.register(testRoute, { prefix: "/api/test" })
+  router(app)
 })
 
 const start = async () => {

@@ -1,13 +1,13 @@
 {
-  "name": "avia-tickets",
+  "name": "multi-service",
   "version": "1.0.1",
-  "repository": "https://github.com/gazzati/avia-tickets.git",
+  "repository": "https://github.com/gazzati/multi-service.git",
   "author": "gazzati <gazzaevtimur@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "start": "node build/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only --quiet src/index.ts",
+    "start": "node build/server.js",
+    "dev": "ts-node-dev --respawn --transpile-only --quiet src/server.ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint src/**/*.ts --fix",
     "type": "tsc --project tsconfig.json --noEmit"
@@ -27,11 +27,13 @@
     "pg": "^8.8.0",
     "pino-pretty": "^9.1.1",
     "simple-pre-commit": "^1.2.1",
-    "typeorm": "^0.3.11"
+    "typeorm": "^0.3.11",
+    "ua-parser-js": "^1.0.33"
   },
   "devDependencies": {
     "@gazzati/eslint-config-node": "^1.0.7",
     "@types/node": "^18.11.18",
+    "@types/ua-parser-js": "^0.7.36",
     "eslint": "^8.30.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.4"

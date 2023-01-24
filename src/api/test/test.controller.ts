@@ -10,7 +10,7 @@ import type {
 } from "./test.schema"
 import TestService from "./test.service"
 
-async function testRoute(server: FastifyInstance) {
+async function testController(server: FastifyInstance) {
   const testService = new TestService()
 
   server.get<TestItemRequest>("/:id", { schema: TestItemSchema }, async (request, reply) => {
@@ -55,4 +55,4 @@ async function testRoute(server: FastifyInstance) {
   })
 }
 
-export default testRoute
+export default testController

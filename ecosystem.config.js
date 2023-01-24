@@ -22,10 +22,10 @@ module.exports = {
       user: "tim",
       host: ["gazzati.site"],
       ref: "origin/master",
-      repo: "https://github.com/gazzati/avia-tickets",
+      repo: "https://github.com/gazzati/multi-service",
       key: "deploy.key",
       ref: "origin/master",
-      path: "/home/projects/avia-tickets/",
+      path: "/home/projects/multi-service/",
       "pre-deploy-local": "",
       "post-deploy":
         "yarn install --ignore-engines && yarn build && pm2 reload ecosystem.config.js --env production && pm2 save",

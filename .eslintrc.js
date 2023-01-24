@@ -5,7 +5,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["*.route.ts"],
+      files: ["*.controller.ts"],
       rules: {
         "@typescript-eslint/require-await": 0
       }
