@@ -1,12 +1,18 @@
 import { FastifyInstance } from "fastify"
 import { UAParser } from "ua-parser-js"
 
-import { AddVisitSchema } from "./stat.schema"
-import type { AddVisit } from "./stat.schema"
+import { GetStatsSchema, AddVisitSchema } from "./stat.schema"
+import type { GetStats, AddVisit } from "./stat.schema"
 import StatService from "./stat.service"
 
 async function statController(server: FastifyInstance) {
   const statService = new StatService()
+
+  server.get<GetStats>("/", { schema: GetStatsSchema }, async (_, reply) => {
+    const response = await statService.getStats()
+
+    reply.send(response)
+  })
 
   server.post<AddVisit>("/visit", { schema: AddVisitSchema }, async (request, reply) => {
     const { headers } = request
