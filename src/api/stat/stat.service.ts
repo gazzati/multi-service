@@ -8,7 +8,7 @@ import type { IpLookup } from "./stat.interface"
 import type { GetStatsResponse } from "./stat.schema"
 
 class StatService extends BaseService {
-  private lookup = maxmind.open<CityResponse>("./data/GeoLite2-City.mmdb")
+  private lookup = maxmind.open<CityResponse>("./data.mmdb")
 
   public async getStats(): Promise<GetStatsResponse> {
     const response = await this.entities.Visit.count()

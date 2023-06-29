@@ -29,4 +29,5 @@ jspm_packages/
 # build files
 dist/
 build/
-data/
+
+data.mmdb

@@ -5,7 +5,7 @@
   "author": "gazzati <gazzaevtimur@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json && cp .env ./build/.env && yarn clean:modules",
+    "build": "tsc -p tsconfig.json && cp .env ./build/.env && cp data.mmdb ./build/data.mmdb && yarn clean:modules",
     "start": "node build/server.js",
     "dev": "ts-node-dev --respawn --transpile-only --quiet src/server.ts",
     "format": "prettier --write \"src/\"",
