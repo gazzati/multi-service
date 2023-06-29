@@ -5,12 +5,13 @@
   "author": "gazzati <gazzaevtimur@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json && cp .env ./build/.env",
+    "build": "tsc -p tsconfig.json && cp .env ./build/.env && yarn clean:modules",
     "start": "node build/server.js",
     "dev": "ts-node-dev --respawn --transpile-only --quiet src/server.ts",
     "format": "prettier --write \"src/\"",
     "lint": "eslint src/**/*.ts --fix",
-    "type": "tsc --project tsconfig.json --noEmit"
+    "type": "tsc --project tsconfig.json --noEmit",
+    "clean:modules": "rm -rf ./node_modules"
   },
   "dependencies": {
     "@fastify/sensible": "^5.2.0",
@@ -23,6 +24,7 @@
     "fastify-plugin": "^4.4.0",
     "joi": "^17.7.0",
     "lint-staged": "^13.1.0",
+    "maxmind": "^4.3.11",
     "module-alias": "^2.2.2",
     "pg": "^8.8.0",
     "pino-pretty": "^9.1.1",

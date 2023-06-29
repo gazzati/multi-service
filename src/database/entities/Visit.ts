@@ -8,11 +8,26 @@ export class Visit {
   @Column()
   ip: string
 
-  @Column()
-  ua: string
+  @Column({ nullable: true })
+  country: string
+
+  @Column({ nullable: true })
+  region: string
+
+  @Column({ nullable: true })
+  city: string
+
+  @Column({ type: "decimal", precision: 10, scale: 4, nullable: true })
+  latitude: string
+
+  @Column({ type: "decimal", precision: 10, scale: 4, nullable: true })
+  longitude: string
 
   @Column({ nullable: true })
   browser: string
+
+  @Column()
+  ua: string
 
   @Column({ nullable: true })
   os: string

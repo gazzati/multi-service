@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import { DataSource } from "typeorm"
 
-import { Test } from "@root/database/entities/Test"
-import { Visit } from "@root/database/entities/Visit"
+import { Test } from "@database/entities/Test"
+import { Visit } from "@database/entities/Visit"
 
 import config from "@config/index"
 
@@ -25,6 +25,6 @@ AppDataSource.initialize()
   .catch(error => console.error(error))
 
 export const entities = {
-  Visit: AppDataSource.getRepository(Visit),
-  Test: AppDataSource.getRepository(Test)
+  Test: AppDataSource.getRepository(Test),
+  Visit: AppDataSource.getRepository(Visit)
 }
